@@ -25,7 +25,7 @@ namespace ProjectH.Scripts.Player
 
         private void Start()
         {
-            _cam = GetComponent<PlayerLook>().Camera;
+            _cam = GetComponent<PlayerControls>().Camera;
             _playerUI = GetComponent<PlayerUI>();
             _inputManager = GetComponent<InputManager>();
         }
@@ -53,10 +53,10 @@ namespace ProjectH.Scripts.Player
                 {
                     var interactable = hitInfo.collider.GetComponent<Interactable>();
                     _playerUI.UpdateText(interactable.PromptMessage);
-                    if (_inputManager.Character.Interact.triggered)
-                    {
-                        interactable.BaseInteract();
-                    }
+                    // if (_inputManager.Character.Interact.triggered)
+                    // {
+                    //     interactable.BaseInteract();
+                    // }
                 }
             }
         }

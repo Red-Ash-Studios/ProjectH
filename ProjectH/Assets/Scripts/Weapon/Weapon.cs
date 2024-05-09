@@ -1,11 +1,12 @@
 using ProjectH.Scripts.Enemy;
 using ProjectH.Scripts.ScriptableObjectsGen;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectH.Scripts.Weapon
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : NetworkBehaviour
     {
         #region Contents
 
@@ -46,6 +47,10 @@ namespace ProjectH.Scripts.Weapon
 
         private void Start()
         {
+            if (IsOwner)
+            {
+                _camera.gameObject.SetActive(true);
+            }
         }
 
         private void Update()

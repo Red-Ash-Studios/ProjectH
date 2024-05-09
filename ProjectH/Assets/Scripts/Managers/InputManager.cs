@@ -1,56 +1,94 @@
 using System;
 using ProjectH.Scripts.Player;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ProjectH.Scripts.Managers
 {
-    public class InputManager: MonoBehaviour
+    public class InputManager : NetworkBehaviour
     {
         #region Fields
 
         private PlayerInput _playerInput;
-        
-        private PlayerInput.CharacterActions _character;
-        public PlayerInput.CharacterActions Character => _character;
+        private PlayerInputActions _playerInputActions;
 
-        private PlayerMovement _movement;
-        private PlayerLook _look;
+        private PlayerControls _playerControls;
 
         #endregion
-        
-        #region Unity
 
-        private void Awake()
+        #region Unity
+        
+        private void Start()
         {
-            _playerInput = new PlayerInput();
-            _character = _playerInput.Character;
+            if (!IsOwner)
+                return;
             
-            _movement = GetComponent<PlayerMovement>();
-            _look = GetComponent<PlayerLook>();
-            
-            _character.Jump.performed += ctx => _movement.Jump();
-            _character.Sprint.performed += ctx => _movement.Sprint();
-            _character.Crouch.performed += ctx => _movement.Crouch();
+            _playerControls = GetComponent<PlayerControls>();
+            _playerInputActions = new PlayerInputActions();
+            _playerInput = GetComponent<PlayerInput>();
+            _playerInputActions.Enable();
+
+            AddEvents();
         }
+
         private void FixedUpdate()
         {
-            
         }
 
         private void LateUpdate()
         {
-            _movement.ProcessMove(_character.Movement.ReadValue<Vector2>());
-            _look.ProcessLook(_character.Look.ReadValue<Vector2>());
+            if (!IsOwner)
+                return;
+            
+            _playerControls.ProcessLook(_playerInputActions.Character.Look.ReadValue<Vector2>());
+            _playerControls.ProcessMove(_playerInputActions.Character.Movement.ReadValue<Vector2>());
         }
 
-        private void OnEnable()
+        #endregion
+
+
+        #region Event: OnJumped
+
+        private void OnJumped(InputAction.CallbackContext obj)
         {
-            _character.Enable();
+            _playerControls.Jump();
         }
 
-        private void OnDisable()
+        #endregion
+
+        #region Event: OnSprinted
+
+        private void OnSprinted(InputAction.CallbackContext obj)
         {
-            _character.Disable();
+            _playerControls.Sprint();
+        }
+
+        #endregion
+
+        #region Event: OnCrouched
+
+        private void OnCrouched(InputAction.CallbackContext obj)
+        {
+            _playerControls.Crouch();
+        }
+
+        #endregion
+
+        #region Events: Add | Remove
+
+        private void AddEvents()
+        {
+            _playerInputActions.Character.Sprint.performed += OnSprinted;
+            _playerInputActions.Character.Jump.performed += OnJumped;
+            _playerInputActions.Character.Crouch.performed += OnCrouched;
+        }
+
+        private void RemoveEvents()
+        {
+            _playerInputActions.Character.Sprint.performed -= OnSprinted;
+            _playerInputActions.Character.Jump.performed -= OnJumped;
+            _playerInputActions.Character.Crouch.performed -= OnCrouched;
         }
 
         #endregion

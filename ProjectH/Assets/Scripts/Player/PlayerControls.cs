@@ -1,17 +1,40 @@
+using Unity.Netcode;
 using UnityEngine;
 
 namespace ProjectH.Scripts.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerControls : MonoBehaviour
     {
         #region Properties
 
-        [SerializeField] private float _gravity = -9.8f, _speed = 5f, _jumpHeight = 1f;
+        [Header("Movement")] 
+        [SerializeField]
+        private float _gravity = -9.8f;
+        [SerializeField] 
+        private float _speed = 5f;
+        [SerializeField] 
+        private float _jumpHeight = 1f;
+
+        [Space] 
+        
+        [Header("Look")]
+        [SerializeField] 
+        private float _xSensivity = 30f;
+        [SerializeField] 
+        private float _ySensivity = 30f;
+        [SerializeField] 
+        private float _lookXLimit = 80f;
+        [SerializeField] 
+        private Transform _weapon;
+        [SerializeField] 
+        private Camera _camera; 
+        public Camera Camera => _camera;
 
         #endregion
 
         #region Fields
 
+        //Movement
         private CharacterController _controller;
         private Vector3 _playerVelocity;
         private bool _isGrounded;
@@ -19,6 +42,9 @@ namespace ProjectH.Scripts.Player
         private bool _crouching;
         private bool _lerpCrouch;
         private float _crouchTimer;
+        
+        //Look
+        private float _xRotation = 0f;
 
         #endregion
 
@@ -52,7 +78,25 @@ namespace ProjectH.Scripts.Player
 
         #endregion
 
+        
+        #region Process: Look
 
+        public void ProcessLook(Vector2 input)
+        {
+            var mouseX = input.x;
+            var mouseY = input.y;
+
+            _xRotation -= (mouseY * Time.deltaTime * _ySensivity);
+            _xRotation = Mathf.Clamp(_xRotation, -_lookXLimit, _lookXLimit);
+            _weapon.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+
+            _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+
+            transform.Rotate(Vector3.up * (mouseX * Time.deltaTime * _xSensivity));
+        }
+
+        #endregion
+        
         #region Process: Move
 
         public void ProcessMove(Vector2 input)
