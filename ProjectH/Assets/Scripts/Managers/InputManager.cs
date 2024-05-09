@@ -13,7 +13,7 @@ namespace ProjectH.Scripts.Managers
         private PlayerInput.CharacterActions _character;
         public PlayerInput.CharacterActions Character => _character;
 
-        private PlayerMotor _motor;
+        private PlayerMovement _movement;
         private PlayerLook _look;
 
         #endregion
@@ -25,12 +25,12 @@ namespace ProjectH.Scripts.Managers
             _playerInput = new PlayerInput();
             _character = _playerInput.Character;
             
-            _motor = GetComponent<PlayerMotor>();
+            _movement = GetComponent<PlayerMovement>();
             _look = GetComponent<PlayerLook>();
             
-            _character.Jump.performed += ctx => _motor.Jump();
-            _character.Sprint.performed += ctx => _motor.Sprint();
-            _character.Crouch.performed += ctx => _motor.Crouch();
+            _character.Jump.performed += ctx => _movement.Jump();
+            _character.Sprint.performed += ctx => _movement.Sprint();
+            _character.Crouch.performed += ctx => _movement.Crouch();
         }
         private void FixedUpdate()
         {
@@ -39,7 +39,7 @@ namespace ProjectH.Scripts.Managers
 
         private void LateUpdate()
         {
-            _motor.ProcessMove(_character.Movement.ReadValue<Vector2>());
+            _movement.ProcessMove(_character.Movement.ReadValue<Vector2>());
             _look.ProcessLook(_character.Look.ReadValue<Vector2>());
         }
 

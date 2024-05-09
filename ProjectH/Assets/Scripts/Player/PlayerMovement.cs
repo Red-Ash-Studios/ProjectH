@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectH.Scripts.Player
 {
-    public class PlayerMotor : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         #region Properties
 

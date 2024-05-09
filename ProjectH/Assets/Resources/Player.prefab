@@ -92,7 +92,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365908975948490475}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &2485763575683362637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.55
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.2
+  m_fontSize: 21.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.2
+  m_fontSize: 21.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1044,14 +1044,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2537433284900009540}
   - component: {fileID: 4822334953610250574}
-  - component: {fileID: 4355347616758417864}
-  - component: {fileID: 6014525693120723353}
+  - component: {fileID: 1783202447903059693}
   - component: {fileID: 5818726848813642340}
+  - component: {fileID: 4355347616758417864}
   - component: {fileID: 1734222674903529407}
   - component: {fileID: 8193779788012628110}
   - component: {fileID: 1285409674403679299}
+  - component: {fileID: 3982755940338735192}
   - component: {fileID: 1829108441449727765}
-  - component: {fileID: 1783202447903059693}
+  - component: {fileID: 1538893700619486085}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1104,7 +1105,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4355347616758417864
+--- !u!114 &1783202447903059693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1113,24 +1114,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5025624141203283217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df57271bd240dca40ada6af767795de9, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: -9.8
-  _speed: 5
-  _jumpHeight: 1
---- !u!114 &6014525693120723353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5025624141203283217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb295b2832d47b1a3f8458c2bc4ede4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 622631934
+  InScenePlacedSourceGlobalObjectIdHash: 4185191154
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &5818726848813642340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1143,21 @@ MonoBehaviour:
   _xSensivity: 40
   _ySensivity: 40
   _lookXLimit: 80
+--- !u!114 &4355347616758417864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025624141203283217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df57271bd240dca40ada6af767795de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravity: -9.8
+  _speed: 5
+  _jumpHeight: 1
 --- !u!114 &1734222674903529407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,6 +1204,18 @@ MonoBehaviour:
   _overlay: {fileID: 6355850360434613243}
   Duration: 2
   FadeSpeed: 0.75
+--- !u!114 &3982755940338735192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025624141203283217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb295b2832d47b1a3f8458c2bc4ede4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1829108441449727765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,7 +1239,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _text: {fileID: 9057280619019372014}
---- !u!114 &1783202447903059693
+--- !u!114 &1538893700619486085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1226,18 +1248,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5025624141203283217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4185191154
-  InScenePlacedSourceGlobalObjectIdHash: 4185191154
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
 --- !u!1 &5453625023596372033
 GameObject:
   m_ObjectHideFlags: 0
