@@ -15,12 +15,12 @@ namespace ProjectH.Scripts.Enemy
                 Debug.Log("Hit Player");
                 hitTransform.GetComponent<PlayerStats>().DecreaseHealth(10);
             }
-            Destroy(gameObject,1);
+            Destroy(gameObject, 1);
         }
 
         private void Start()
         {
-            Destroy(gameObject,5);
+            Destroy(gameObject, 5);
         }
     }
 }
